@@ -5,7 +5,7 @@ module.exports = function(app){
     Wizard.lastUpdate     = "2.0.0";
     Wizard.version        = "1";
     // Wizard.factoryExclude = true;
-    // Wizard.loadingMsg     = "This message will display in the console when component will be loaded.";
+    // Wizard.loadingMsg     = utils.renderError === undefined ? "utils.renderError function is not defined" : false;
     // Wizard.requires       = [];
 
     Wizard.prototype.onCreate = function(){
@@ -14,7 +14,7 @@ module.exports = function(app){
         wizard.$wrapper     ??= wizard.$el.closest('.wizard__container');
         wizard.mode         ??= wizard.getData('mode',false);
         wizard.required     ??= wizard.$el.attr('required')?true:false;
-        wizard.renderErrors ??= wizard.getData('rendererrors',true);
+        wizard.renderErrors ??= wizard.getData('rendererrors',false);
         
         wizard.log(wizard);
         return wizard;
@@ -86,7 +86,6 @@ module.exports = function(app){
         // console.log('getValue',wizard.name,container,items);
         items.each(function(i,group){
             results.values[i]={};
-            
             var nbEmpty = $(group).find('input,select').filter(function(){
                     return !$(this).val().length;
             }).length;
@@ -136,6 +135,7 @@ module.exports = function(app){
                 delete results.values[i];
         });
 
+        // wizard is required but there is no values --> result must be false
         if (wizard.required && utils.getObjSize(results.values) == 0){
             results.valid = false;
             results.values = "";
@@ -162,7 +162,7 @@ module.exports = function(app){
         else if ($(input).attr('name'))
             labelError += ' ('+$(input).attr('name')+')';
 
-        app.renderError(
+        utils.renderError(
             wizard.name+'_'+$(input).attr('data-wizardKey'), 
             app.labels.errors.inputs.empty[app.lang].replace('%s',labelError)
         );
