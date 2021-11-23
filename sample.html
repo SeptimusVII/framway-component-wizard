@@ -1,1 +1,23 @@
-<div class="wizard"></div>
+<div class="form-group wizard__container cols-span-2">
+	<label for="field_options">Options</label>
+	<input type="hidden" name="field_options" id="field_options" class="wizard" data-mode="" data-rendererrors="" >
+	<div class="wizard__group" data-wizard="field_options">
+		<input type="text" data-wizardKey="value" class="key" placeholder="Valeur" required>
+		<input type="text" data-wizardKey="label" class="value" placeholder="Label"  >
+		<input type="text" data-wizardKey="date" class="datepicker" placeholder="date">
+		<select data-wizardKey="type1" multiple>
+			<option value=""> - </option>
+			<option value="val-1">value 1</option>
+			<option value="val-2">value 2</option>
+			<option value="val-3">value 3</option>
+		</select>
+		<select data-wizardKey="type2">
+			<option value=""> - </option>
+			<option value="val-1">value 1</option>
+			<option value="val-2">value 2</option>
+			<option value="val-3">value 3</option>
+		</select>
+		<button type="button" class="btn squared add"><i class="fal fa-plus"></i></button>
+		<button type="button" class="btn squared btn-bd-primary delete"><i class="fal fa-times"></i></button>
+	</div>
+</div>
