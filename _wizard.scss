@@ -1,1 +1,20 @@
 .wizard{}
+.wizard__container{margin-bottom: $spacing;
+	@include media-max(xs){margin-bottom: $spacing/2;}
+	.select2-container,%input,.input-group,.form-group{margin-bottom: 0; min-width: 0;}
+	.fileUploader__wrapper{
+		label[class*="btn"]{height: 100%; padding: .4em 1em .5em;display: inline-flex; align-items: center; justify-content: center;
+			svg{ font-size: 1.2em;}
+		}
+		.fileUploader__preview{float: right; grid-template-columns: minmax(0,1fr); width: 50px; height: 50px; border: 1px solid $primary;}
+		.preview__zoomin,
+		.preview__label{display: none;}
+		.preview__delete{ width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+	}
+}
+.wizard__group{@extend .input-group, .form-shrink !optional; margin-bottom: 0;min-width: 0;
+	&+.wizard__group{margin-top: 2px;}
+	&:first-of-type{
+		.delete{visibility: hidden; pointer-events: none;}
+	}
+}
