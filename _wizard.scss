@@ -14,8 +14,10 @@
 }
 .wizard__group{@extend .input-group, .form-shrink !optional; margin-bottom: 0;min-width: 0; gap: 3px;
 	%input{border: input(border-size) solid input(border-color); margin: 0; border-radius: 0;
-		&:first-of-type{border-top-left-radius: clamp(0px, input(radius), 25px); border-bottom-left-radius: clamp(0px, input(radius), 25px);}
-		&:last-of-type{border-top-right-radius: clamp(0px, input(radius), 25px); border-bottom-right-radius: clamp(0px, input(radius), 25px);}
+		@if input(radius) != false{
+			&:first-of-type{border-top-left-radius: clamp(0px, input(radius), 25px); border-bottom-left-radius: clamp(0px, input(radius), 25px);}
+			&:last-of-type{border-top-right-radius: clamp(0px, input(radius), 25px); border-bottom-right-radius: clamp(0px, input(radius), 25px);}
+		}
 	}
 	&+.wizard__group{margin-top: 2px;}
 	&:first-of-type{
